@@ -10,8 +10,8 @@ function getNLUInstance() {
     const NaturalLanguageUnderstandingV1 = require("ibm-watson/natural-language-understanding/v1");
     const { IamAuthenticator } = require("ibm-watson/auth");
 
-    const  naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
-        version: "2020-08-01";
+    const naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
+        version: "2020-08-01",
         authenticator: new IamAuthenticator({
             apikey: api_key,
         }),
@@ -45,6 +45,10 @@ app.get("/text/sentiment", (req, res) => {
     return res.send("text sentiment for " + req.query.text);
 });
 
-let server = app.listen(3000, () => {
-    console.log("Listening", server.address().port);
+// let server = app.listen(process.env.PORT || 5555, () => {
+//     console.log("Listening", server.address().port);
+// });
+
+let server = app.listen(8080 || 3000, () => {
+    console.log("Listening on port", server.address().port);
 });
